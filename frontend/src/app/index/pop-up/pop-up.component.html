@@ -1,0 +1,42 @@
+
+<!-- pop-up.component.html -->
+<div class="modal-header" [ngClass]="{
+  'bg-primary': status === 'onaylı',
+  'bg-danger': status === 'reddedildi'
+}">
+  <h4 class="modal-title text-white">Durumu "{{status | uppercase}}" yap</h4>
+  <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="dismiss()"></button>
+</div>
+
+<div class="modal-body text-center">
+  <p class="lead mb-4">Bu test sonucunun durumunu güncellemek istediğinize emin misiniz?</p>
+
+  <div class="d-flex justify-content-center gap-2">
+    <button class="btn flex-grow-1" 
+            [ngClass]="{
+              'btn-success': status === 'onaylı',
+              'btn-danger': status === 'reddedildi'
+            }"
+            (click)="updateStatus()"
+            [disabled]="isLoading">
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+      <i class="bi" [ngClass]="{
+        'bi-check2-circle': status === 'onaylı',
+        'bi-x-circle': status === 'reddedildi'
+      }"></i>
+      {{status === 'onaylı' ? 'Onayla' : 'Reddet'}}
+    </button>
+    
+    <button class="btn btn-secondary flex-grow-1" (click)="dismiss()" [disabled]="isLoading">
+      <i class="bi bi-x-circle"></i> İptal
+    </button>
+  </div>
+
+  <!-- İşlem sonucu mesajı -->
+  <div *ngIf="showMessage" class="alert mt-3 mb-0" [ngClass]="{
+    'alert-success': messageType === 'success',
+    'alert-danger': messageType === 'error'
+  }">
+    {{messageText}}
+  </div>
+</div>

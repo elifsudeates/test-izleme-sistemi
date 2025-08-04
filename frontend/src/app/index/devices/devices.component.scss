@@ -1,0 +1,21 @@
+// devices.component.scss
+.table-responsive {
+  margin-top: 20px;
+}
+
+.table {
+  th {
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  
+  td {
+    vertical-align: middle;
+  }
+}
+
+.badge {
+  i {
+    cursor: pointer;
+  }
+}

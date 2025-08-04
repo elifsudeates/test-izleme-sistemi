@@ -1,0 +1,92 @@
+<!-- test-sonuc.component.html -->
+<div class="container py-5">
+  <!-- Hızlı Arama Kartı -->
+  <div class="card shadow">
+    <div class="card-header bg-danger text-white">
+      <h4 class="mb-0">TEST SONUCU YÜKLEME <small class="fs-6">ÜRETİM</small></h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onQuickSearch()" #quickSearchForm="ngForm">
+        <div class="mb-3">
+          <label for="partNumber" class="form-label">Parça Numarası</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="partNumber" 
+              [(ngModel)]="quickSearchPartNumber"
+              name="partNumber"
+              placeholder="örn: 10091050‑3"
+              required>
+          </div>
+        </div>
+
+        <div *ngIf="showQuickSearchWarning" class="alert alert-danger">
+          Parça numarası giriniz!
+        </div>
+
+        <button type="submit" class="btn btn-primary">ARA</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rapor Filtre Kartı -->
+  <div class="card shadow mt-4">
+    <div class="card-header bg-secondary text-white">
+      <h4 class="mb-0">TEST SONUÇLARI RAPORLAMA</h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onFilterSubmit()" #filterForm="ngForm">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">İşemri Numarası</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="filterParams.isEmri"
+              name="isEmri">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">ASELSAN İşemri No</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="filterParams.aselsanIsEmri"
+              name="aselsanIsEmri">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Parça Numarası</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="filterParams.parcaNo"
+              name="parcaNo">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Seri Numarası</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="filterParams.seriNo"
+              name="seriNo">
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-funnel-fill"></i> Raporla
+          </button>
+          <button type="button" class="btn btn-outline-secondary" (click)="resetFilterForm()">
+            <i class="bi bi-eraser"></i> Temizle
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Action Button -->
+<button class="btn btn-success btn-lg fab" (click)="navigateToAdd()">
+  <i class="bi bi-plus-lg"></i>
+</button>

@@ -1,0 +1,37 @@
+<!-- test-sonuc-yukleme.component.html -->
+<div class="container py-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">TEST SONUCU YÜKLEME <small class="fs-6">ÜRETİM</small></h4>
+    </div>
+
+    <div class="card-body">
+      <!-- Parça No arama formu -->
+      <form (ngSubmit)="onSearch()" #searchForm="ngForm" novalidate>
+        <div class="mb-3">
+          <label for="partNumber" class="form-label">Parça Numarası</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input 
+              type="text"
+              class="form-control"
+              id="partNumber"
+              [(ngModel)]="partNumber"
+              name="partNumber"
+              placeholder="örn: 20012345‑X"
+              required>
+          </div>
+        </div>
+
+        <!-- Uyarı mesajı (boş arama) -->
+        <div *ngIf="showWarning" class="alert alert-danger">
+          Parça numarası giriniz!
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-search"></i> Ara
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<!-- test-sonuc-yukleme.component.html -->
+<div class="container py-3 mt-0">
+  <div class="card shadow">
+    <div class="card-header bg-info text-white">
+      <h4 class="mb-0">TEST SONUCU YÜKLEME <small class="fs-6">ÜRETİM</small></h4>
+    </div>
+
+    <div class="card-body">
+      <!-- Upload form -->
+      <form (ngSubmit)="onSubmit()" #uploadForm="ngForm" enctype="multipart/form-data">
+        <!-- Hidden item_id -->
+        <input type="hidden" name="item_id" [(ngModel)]="selectedItemId">
+
+        <div class="mb-3">
+          <label class="form-label">İşemri:</label>
+          <input type="text" class="form-control" [(ngModel)]="itemData.is_emri" name="isEmri" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">ASELSAN İşemri:</label>
+          <input type="text" class="form-control" [(ngModel)]="itemData.aselsan_is_emri" name="aselsanIsEmri" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Parça No:</label>
+          <input type="text" class="form-control" [(ngModel)]="itemData.parca_no" name="parcaNo" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Tanım:</label>
+          <input type="text" class="form-control" [(ngModel)]="itemData.tanimi" name="tanimi" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Seri No:</label>
+          <input type="text" class="form-control" [(ngModel)]="itemData.seri_no" name="seriNo" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Test Adımı:</label>
+          <select class="form-select" [(ngModel)]="selectedTestId" name="test_id" required> 
+            <option *ngFor="let test of tests" [value]="test.id">
+              {{test.item_no}} – {{test.name}}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Test Zamanı:</label>
+          <input type="datetime-local" class="form-control" [(ngModel)]="testZamani" name="test_zamani" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Dosya:</label>
+          <input type="file" 
+                 class="form-control" 
+                 (change)="onFileSelected($event)"
+                 accept=".pdf,.jpg,.jpeg,.png,.xlsx,.docx"
+                 required>
+        </div>
+
+        <!-- YÜKLE BUTONU -->
+        <button type="submit" class="btn btn-success" [disabled]="uploadForm.invalid || isUploading">
+          <i class="bi bi-upload"></i> Yükle
+          <span *ngIf="isUploading" class="spinner-border spinner-border-sm ms-2"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

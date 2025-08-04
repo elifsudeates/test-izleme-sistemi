@@ -1,0 +1,50 @@
+<!-- devices.component.html -->
+<div class="container py-4">
+  <div class="card shadow">
+    <div class="card-header bg-success text-white">
+      <h4 class="mb-0">CİHAZ BİLGİSİ ÇAĞIRMA <small class="fs-6">ÜRETİM</small></h4>
+    </div>
+
+    <div class="card-body">
+      <!-- search badge container -->
+      <div id="badgeArea" class="mb-3">
+        <span *ngIf="parcaNo" class="badge bg-primary fs-6">
+          {{parcaNo}}
+          <i class="bi bi-x ms-1" role="button" (click)="clearSearch()"></i>
+        </span>
+      </div>
+
+      <!-- responsive table -->
+      <div class="table-responsive">
+        <table class="table table-bordered text-center align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>#</th>
+              <th>İşemri</th>
+              <th>ASELSAN İşemri</th>
+              <th>Parça No</th>
+              <th>Tanım</th>
+              <th>Seri No</th>
+              <th>İşlem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of deviceList; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{row.is_emri}}</td>
+              <td>{{row.aselsan_is_emri}}</td>
+              <td>{{row.parca_no}}</td>
+              <td>{{row.tanimi}}</td>
+              <td>{{row.seri_no}}</td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="selectItem(row.id)">
+                  <i class="bi bi-check-circle"></i> Seç
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
